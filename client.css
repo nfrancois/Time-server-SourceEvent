@@ -1,0 +1,14 @@
+body { 
+	background-color: teal;
+}
+ 
+p { 
+	background-color: white;
+	border-radius: 8px;
+	border:solid 1px #555; 
+	text-align: center;
+	padding: 0.5em;
+	font-family: "Lucida Grande", Tahoma;
+	font-size: 18px;
+	color: #555;
+}
