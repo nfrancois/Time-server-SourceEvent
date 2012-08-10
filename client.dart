@@ -9,8 +9,8 @@ Element _currentTimeElement;
 main(){
   _currentTimeElement = document.query('#currentTime');
   var source = new EventSource('/time');
-  //source.on.open.add((e) => print('open'));
-  //source.on.error.add((ErrorEvent e) => print(e));
+  source.on.open.add((e) => print('open'));
+  source.on.error.add((Event e) => print(e));
   source.on.message.add((MessageEvent me)  => showDate(Math.parseInt(me.data)));
 }
 
