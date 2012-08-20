@@ -36,8 +36,8 @@ _serveFile(HttpRequest request, HttpResponse response){
     if(exist){
       file.openInputStream().pipe(response.outputStream);
     } else {
-      response.statusCode = HttpStatus.NOT_FOUND;
-      response.outputStream.close();        
+      response..statusCode = HttpStatus.NOT_FOUND
+              ..outputStream.close();        
     }    
   });
 }
