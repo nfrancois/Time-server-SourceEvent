@@ -5,25 +5,23 @@ import 'dart:isolate';
 
 const HOST = "127.0.0.1";
 const PORT = 8080;
-const SECOND = 1000;  
+const SECOND = 1000;
 
 // http://www.html5rocks.com/en/tutorials/eventsource/basics/
 
 main() {
-  HttpServer server = new HttpServer();
-  
-  server..defaultRequestHandler = _serveFile
-        ..addRequestHandler((HttpRequest request) => request.path == "/time", _time)
-        ..listen(HOST, PORT);
-  
-  print("Serving the current time on http://${HOST}:${PORT}."); 
+  HttpServer server = new HttpServer()..defaultRequestHandler = _serveFile
+                                      ..addRequestHandler((HttpRequest request) => request.path == "/time", _time)
+                                      ..listen(HOST, PORT);
+
+  print("Serving the current time on http://${HOST}:${PORT}.");
 }
 
 _time(HttpRequest request, HttpResponse response) {
   response.headers..set(HttpHeaders.CONTENT_TYPE, 'text/event-stream')
                   ..set(HttpHeaders.CACHE_CONTROL, 'no-cache')
                   ..set(HttpHeaders.CONNECTION, 'keep-alive');
-  var timer = new Timer.repeating(SECOND, (t) => _onTick(t, response));  
+  var timer = new Timer.repeating(SECOND, (t) => _onTick(t, response));
 }
 
 _onTick(Timer timer, HttpResponse response) {
@@ -45,7 +43,7 @@ _serveFile(HttpRequest request, HttpResponse response){
       file.openInputStream().pipe(response.outputStream);
     } else {
       response..statusCode = HttpStatus.NOT_FOUND
-              ..outputStream.close();        
-    }    
+              ..outputStream.close();
+    }
   });
 }
