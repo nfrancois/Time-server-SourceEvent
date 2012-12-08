@@ -6,9 +6,10 @@ Element _currentTimeElement;
 
 main() {
   _currentTimeElement = document.query('#currentTime');
+  _connectToEventSource();
 }
 
-_connectToEventSource(value){
+_connectToEventSource(){
   var source = new EventSource('/time');
   source.on..open.add((e) => print('open'))
            ..error.add((Event e) => print(e))
