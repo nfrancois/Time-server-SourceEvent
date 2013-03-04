@@ -11,12 +11,12 @@ main() {
 
 _connectToEventSource(){
   var source = new EventSource('/time');
-  source.on..open.add((e) => print('open'))
-           ..error.add((Event e) => print(e))
-           ..message.add((MessageEvent me)  => _displayDate(int.parse(me.data)));
+  source..onError.listen((Event e) => print("Error:$e"))
+        ..onOpen.listen((Event e) => print('open'))
+        ..onMessage.listen((MessageEvent me)  => _displayDate(int.parse(me.data)));
 }
 
 _displayDate(int millisecondsSinceEpoch){
-  Date current = new Date.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
+  DateTime current = new DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
   _currentTimeElement.text = current.toString();
 }

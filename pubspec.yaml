@@ -1,3 +1,4 @@
 name:  time_server_sse
 description:  Dart Time server with Source Event
-  
+dependencies:
+  browser: any  
